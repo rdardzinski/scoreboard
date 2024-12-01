@@ -30,4 +30,7 @@ public class ScoreBoardService {
         throw new NotImplementedException();
     }
 
+    public List<ScoreEntry> getSortedScores() {
+        throw new NotImplementedException();
+    }
 }
