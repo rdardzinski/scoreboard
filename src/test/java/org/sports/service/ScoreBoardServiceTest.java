@@ -76,7 +76,7 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    public void testSortingByGoalsAndStartDate() throws InterruptedException {
+    public void testSortingByGoalsAndStartDate() {
         ScoreBoardService service = new ScoreBoardService();
 
         // Add matches
@@ -100,13 +100,12 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    public void testSortingWithSameGoalsByStartDate() throws InterruptedException {
+    public void testSortingWithSameGoalsByStartDate() {
         ScoreBoardService service = new ScoreBoardService();
 
         // Add matches
         service.addNewEntry("Team A", "Team B");
         service.addNewEntry("Team C", "Team D");
-
         // Update scores
         service.updateScore("Team A", "Team B", 2, 2);
         service.updateScore("Team C", "Team D", 2, 2);

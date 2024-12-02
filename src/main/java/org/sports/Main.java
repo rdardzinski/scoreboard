@@ -1,6 +1,10 @@
 package org.sports;
 
+import org.sports.mapper.ScoreEntryMapper;
+import org.sports.model.ScoreEntry;
 import org.sports.service.ScoreBoardService;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,21 +15,33 @@ public class Main {
         service.addNewEntry("Uruguay", "Italy");
         service.addNewEntry("Argentina", "Australia");
 
-        // Update scores
-        service.updateScore("Mexico", "Canada", 0, 5);
-        service.updateScore("Spain", "Brazil", 10, 2);
-        service.updateScore("Germany", "France", 2, 2);
-        service.updateScore("Uruguay", "Italy", 6, 6);
-        service.updateScore("Argentina", "Australia", 3, 1);
+        try {
+            updateScore(service, "Mexico 0 - Canada 5");
+            updateScore(service, "Spain 10 - Brazil 2");
+            updateScore(service, "Germany 2 - France 2");
+            updateScore(service, "Uruguay 6 - Italy 6");
+            updateScore(service, "Argentina 3 - Australia 1");
+            List<ScoreEntry> sortedScores = service.getSortedScores();
+            System.out.println("Current Matches:");
+            sortedScores.forEach(System.out::println);
 
-        // Display sorted scores
-        service.getSortedScores().forEach(System.out::println);
+            service.finishMatch("Uruguay", "Italy");
+            System.out.println("\nAfter finishing Uruguay vs Italy:");
+            sortedScores = service.getSortedScores();
+            sortedScores.forEach(System.out::println);
 
-        // Finish a match
-        service.finishMatch("Spain", "Brazil");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
-        System.out.println("Spain vs Brazil is finished.");
-        // Display sorted scores after finishing a match
-        service.getSortedScores().forEach(System.out::println);
+    private static void updateScore(ScoreBoardService service, String update) {
+        ScoreEntry scoreUpdate1 = ScoreEntryMapper.mapFromString(update);
+        service.updateScore(
+                scoreUpdate1.getHomeScore().getTeam().getName(),
+                scoreUpdate1.getAwayScore().getTeam().getName(),
+                scoreUpdate1.getHomeScore().getGoals(),
+                scoreUpdate1.getAwayScore().getGoals()
+        );
     }
 }

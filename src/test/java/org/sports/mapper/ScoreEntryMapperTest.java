@@ -1,19 +1,19 @@
 package org.sports.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.sports.model.ScoreEntry;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ScoreEntryMapperTest {
 
     @Test
     public void testValidMapping() {
-        String input = "Mexico 0 - Canada 1";
+        String input = "United States 0 - Canada 1";
         ScoreEntry entry = ScoreEntryMapper.mapFromString(input);
 
-        assertEquals("Mexico", entry.getHomeScore().getTeam().getName());
+        assertEquals("United States", entry.getHomeScore().getTeam().getName());
         assertEquals(0, entry.getHomeScore().getGoals());
         assertEquals("Canada", entry.getAwayScore().getTeam().getName());
         assertEquals(1, entry.getAwayScore().getGoals());
