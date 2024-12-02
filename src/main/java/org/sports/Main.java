@@ -4,16 +4,17 @@ import org.sports.mapper.ScoreEntryMapper;
 import org.sports.model.ScoreEntry;
 import org.sports.service.ScoreBoardService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         ScoreBoardService service = new ScoreBoardService();
         service.addNewEntry("Mexico", "Canada");
-        service.addNewEntry("Spain", "Brazil");
-        service.addNewEntry("Germany", "France");
-        service.addNewEntry("Uruguay", "Italy");
-        service.addNewEntry("Argentina", "Australia");
+        service.addNewEntry("Spain", "Brazil", LocalDateTime.now().plusSeconds(1));
+        service.addNewEntry("Germany", "France", LocalDateTime.now().plusSeconds(2));
+        service.addNewEntry("Uruguay", "Italy", LocalDateTime.now().plusSeconds(3));
+        service.addNewEntry("Argentina", "Australia", LocalDateTime.now().plusSeconds(4));
 
         try {
             updateScore(service, "Mexico 0 - Canada 5");

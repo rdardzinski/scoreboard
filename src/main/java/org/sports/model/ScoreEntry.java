@@ -15,7 +15,7 @@ public class ScoreEntry {
 
     public ScoreEntry(Score homeScore, Score awayScore, LocalDateTime startDate) {
 
-        if (homeScore.getTeam().equals(awayScore.getTeam())) {
+        if (homeScore.getTeam().getName().equalsIgnoreCase(awayScore.getTeam().getName())) {
             throw new IllegalArgumentException("Home and away teams cannot be the same.");
         }
         this.startDate = startDate;

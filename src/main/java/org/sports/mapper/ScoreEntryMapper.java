@@ -6,6 +6,8 @@ import org.sports.model.Team;
 
 public class ScoreEntryMapper {
 
+    private ScoreEntryMapper() {}
+
     /**
      * Maps an input string to a ScoreEntry structure.
      *

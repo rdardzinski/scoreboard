@@ -40,10 +40,6 @@ public class ScoreBoardService {
      * @throws IllegalArgumentException if teams are the same or entry already exists.
      */
     public void addNewEntry(String homeTeamName, String awayTeamName, LocalDateTime startTime) {
-        if (homeTeamName.equalsIgnoreCase(awayTeamName)) {
-            throw new IllegalArgumentException("Home and away teams cannot be the same.");
-        }
-
         Team homeTeam = new Team(homeTeamName);
         Team awayTeam = new Team(awayTeamName);
 
@@ -60,7 +56,7 @@ public class ScoreBoardService {
 
     private boolean checkIfExist(String homeTeamName, String awayTeamName) {
         return scoreEntries.stream().anyMatch(entry ->
-                entry.getHomeScore().getTeam().getName().equalsIgnoreCase(homeTeamName) &&
+                entry.getHomeScore().getTeam().getName().equalsIgnoreCase(homeTeamName) ||
                         entry.getAwayScore().getTeam().getName().equalsIgnoreCase(awayTeamName)
         );
     }
