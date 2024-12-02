@@ -12,6 +12,11 @@ public class Score {
         this.goals = goals;
     }
 
+    public Score(Team team) {
+        this.team = team;
+        this.goals = 0;
+    }
+
     public Team getTeam() {
         return team;
     }

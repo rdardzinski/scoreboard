@@ -16,6 +16,13 @@ public class ScoreEntry {
         this.awayScore = awayScore;
     }
 
+    public ScoreEntry(Score updatedHomeScore, Score updatedAwayScore, LocalDateTime startDate) {
+
+        this.startDate = startDate;
+        this.homeScore = updatedHomeScore;
+        this.awayScore = updatedAwayScore;
+    }
+
     public Score getHomeScore() {
         return homeScore;
     }
