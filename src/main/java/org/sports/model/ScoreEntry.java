@@ -9,18 +9,18 @@ public class ScoreEntry {
 
     public ScoreEntry(Score homeScore, Score awayScore) {
         this.startDate = LocalDateTime.now();
-        if (homeScore.getTeam().equals(awayScore.getTeam())) {
-            throw new IllegalArgumentException("Home and away teams cannot be the same.");
-        }
         this.homeScore = homeScore;
         this.awayScore = awayScore;
     }
 
-    public ScoreEntry(Score updatedHomeScore, Score updatedAwayScore, LocalDateTime startDate) {
+    public ScoreEntry(Score homeScore, Score awayScore, LocalDateTime startDate) {
 
+        if (homeScore.getTeam().equals(awayScore.getTeam())) {
+            throw new IllegalArgumentException("Home and away teams cannot be the same.");
+        }
         this.startDate = startDate;
-        this.homeScore = updatedHomeScore;
-        this.awayScore = updatedAwayScore;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
     }
 
     public Score getHomeScore() {

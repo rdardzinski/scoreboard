@@ -3,6 +3,7 @@ package org.sports.service;
 import org.junit.jupiter.api.Test;
 import org.sports.model.ScoreEntry;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -104,8 +105,8 @@ public class ScoreBoardServiceTest {
         ScoreBoardService service = new ScoreBoardService();
 
         // Add matches
-        service.addNewEntry("Team A", "Team B");
-        service.addNewEntry("Team C", "Team D");
+        service.addNewEntry("Team A", "Team B", LocalDateTime.now());
+        service.addNewEntry("Team C", "Team D", LocalDateTime.now().plusMinutes(1));
         // Update scores
         service.updateScore("Team A", "Team B", 2, 2);
         service.updateScore("Team C", "Team D", 2, 2);

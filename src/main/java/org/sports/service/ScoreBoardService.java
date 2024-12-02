@@ -4,6 +4,7 @@ import org.sports.model.Score;
 import org.sports.model.ScoreEntry;
 import org.sports.model.Team;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,14 +19,27 @@ public class ScoreBoardService {
     }
 
     /**
-     * Adds a new entry with an initial score of 0 - 0.
-     * Avoids adding duplicate entries for the same teams.
+     * Adds a new entry with an initial score of 0 - 0. Setting default creation date as now()
      *
      * @param homeTeamName The name of the home team.
      * @param awayTeamName The name of the away team.
      * @throws IllegalArgumentException if teams are the same or entry already exists.
      */
     public void addNewEntry(String homeTeamName, String awayTeamName) {
+        addNewEntry(homeTeamName, awayTeamName, LocalDateTime.now());
+    }
+
+    /**
+     * Adds a new entry with an initial score of 0 - 0.
+     * Avoids adding duplicate entries for the same teams.
+     * Method overloaded for more precise time setting.
+     *
+     * @param homeTeamName The name of the home team.
+     * @param awayTeamName The name of the away team.
+     * @param startTime Adding event start time.
+     * @throws IllegalArgumentException if teams are the same or entry already exists.
+     */
+    public void addNewEntry(String homeTeamName, String awayTeamName, LocalDateTime startTime) {
         if (homeTeamName.equalsIgnoreCase(awayTeamName)) {
             throw new IllegalArgumentException("Home and away teams cannot be the same.");
         }
@@ -41,7 +55,7 @@ public class ScoreBoardService {
 
         Score homeScore = new Score(homeTeam);
         Score awayScore = new Score(awayTeam);
-        scoreEntries.add(new ScoreEntry(homeScore, awayScore));
+        scoreEntries.add(new ScoreEntry(homeScore, awayScore, startTime));
     }
 
     private boolean checkIfExist(String homeTeamName, String awayTeamName) {
